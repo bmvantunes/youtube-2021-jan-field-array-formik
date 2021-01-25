@@ -7,11 +7,11 @@ export default function Home() {
     <Card>
       <CardContent>
         <Formik initialValues={{}} onSubmit={() => {}}>
-          {({ values }) => (
+          {({ values, errors }) => (
             <Form>
               <h1>Hello YouTube!</h1>
-              
-              <pre>{JSON.stringify(values, null, 4)}</pre>
+
+              <pre>{JSON.stringify({ values, errors }, null, 4)}</pre>
             </Form>
           )}
         </Formik>
