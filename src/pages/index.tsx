@@ -17,8 +17,10 @@ const useStyles = makeStyles((theme) => ({
   errorColor: {
     color: theme.palette.error.main,
   },
-  stretch: {
-    flexGrow: 1,
+  noWrap: {
+    [theme.breakpoints.up('sm')]: {
+      flexWrap: 'nowrap',
+    },
   },
 }));
 
@@ -113,33 +115,31 @@ export default function Home() {
                       </Grid>
 
                       {values.donations.map((_, index) => (
-                        <Grid container item key={index} spacing={2}>
-                          <Grid
-                            item
-                            xs={12}
-                            sm="auto"
-                            className={classes.stretch}
-                          >
-                            <Field
-                              fullWidth
-                              name={`donations.${index}.institution`}
-                              component={TextField}
-                              label="Institution"
-                            />
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            sm="auto"
-                            className={classes.stretch}
-                          >
-                            <Field
-                              fullWidth
-                              name={`donations[${index}].percentage`}
-                              component={TextField}
-                              type="number"
-                              label="Percentage"
-                            />
+                        <Grid
+                          container
+                          item
+                          className={classes.noWrap}
+                          key={index}
+                          spacing={2}
+                        >
+                          <Grid item container spacing={2} xs={12} sm="auto">
+                            <Grid item xs={12} sm={6}>
+                              <Field
+                                fullWidth
+                                name={`donations.${index}.institution`}
+                                component={TextField}
+                                label="Institution"
+                              />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                              <Field
+                                fullWidth
+                                name={`donations[${index}].percentage`}
+                                component={TextField}
+                                type="number"
+                                label="Percentage (%)"
+                              />
+                            </Grid>
                           </Grid>
                           <Grid item xs={12} sm="auto">
                             <Button
