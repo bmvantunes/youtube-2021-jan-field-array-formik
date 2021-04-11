@@ -61,9 +61,9 @@ export default function Home() {
             )
               .min(1, 'You need to provide at least 1 institution')
               .max(3, 'You can only provide 3 institution')
-              .test((donations: Array<{ percentage: number }>) => {
-                const sum = donations.reduce(
-                  (acc, curr) => acc + curr.percentage,
+              .test((donations) => {
+                const sum = donations?.reduce(
+                  (acc, curr) => acc + (curr.percentage || 0),
                   0
                 );
 
